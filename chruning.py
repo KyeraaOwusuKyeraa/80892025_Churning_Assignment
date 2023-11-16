@@ -7,11 +7,12 @@ Original file is located at
     https://colab.research.google.com/drive/1PZ-CE_u2HkPEMf8Q_I3I6sRPnyR1HfcB
 """
 
-import streamimport tensorflow as tf
-from tensorflow.keras.models
-import load_modellit as st
+import streamlit as st
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 
 model = load_model('model.h5')
+
 def predict(tenure, monthly_charges, total_charges, internet_service, online_security, device_protection, streaming_tv, tech_support, contract, payment_method):
     # Normalize the input data
     data = {
@@ -28,7 +29,7 @@ def predict(tenure, monthly_charges, total_charges, internet_service, online_sec
     }
 
     # Make the prediction
-    prediction = model.predict([data])
+    prediction = model.predict([list(data.values())])
     return prediction[0][0]
 
 st.title('Churn Prediction App')
@@ -48,3 +49,4 @@ if st.button('Predict Churn Probability'):
     prediction = predict(tenure, monthly_charges, total_charges, internet_service, online_security, device_protection, streaming_tv, tech_support, contract, payment_method)
     prediction_probability = prediction * 100
     st.success('Churn Probability: {}%'.format(prediction_probability))
+
