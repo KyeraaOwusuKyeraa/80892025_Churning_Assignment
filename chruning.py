@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1PZ-CE_u2HkPEMf8Q_I3I6sRPnyR1HfcB
 """
 
-from tensorflow.keras.models import load_model
 import streamlit as st
 
 model = load_model('model.h5')
